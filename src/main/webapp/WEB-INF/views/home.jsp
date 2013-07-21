@@ -1,14 +1,13 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
+<!doctype html>
 <html>
-<head>
-	<title>Home</title>
-</head>
-<body>
-<h1>
-	Hello world!  
-</h1>
-
-<P>  The time on the server is ${serverTime}. </P>
+<body ng-app>
+	<h1>Welcome to My Place. Lets have at least one check in per day.
+	</h1>
+	<P>{{'This is from Angular template...!!'}}</P>
 </body>
+<head>
+<title>Home</title>
+<script src="/resources/angular.min.js" type="text/javascript"></script>
+</head>
+
 </html>
