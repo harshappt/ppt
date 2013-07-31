@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.myplace.ppt">
+	<logger name="com.myplace.ppt.controller">
 		<level value="info" />
 	</logger>
 	
