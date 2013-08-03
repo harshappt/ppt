@@ -46,26 +46,52 @@ public class PersonControllerIntegTest {
 	}
 
 	@Test
-	public void testSave() throws Exception {
-		String person = createPerson();
+	public void testValidations() throws Exception {
+		Person person = createPerson();
+		person.setFirstName("");
+		person.setLastName("");
+		person.setEmail("");
+		person.setPassword("");
+
+		String string = JSONify(person);
 		mockmvc.perform(
 				post("/person/save").contentType(MediaType.APPLICATION_JSON)
-						.content(person))
-				.andExpect(jsonPath("$.lastName").exists()).andDo(print());
+						.content(string))
+				.andExpect(jsonPath("$.lastName").exists())
+				.andExpect(jsonPath("$.firstName").exists())
+				.andExpect(jsonPath("$.password").exists())
+				.andExpect(jsonPath("$.email").exists()).andDo(print());
 
 	}
 
-	private String createPerson() throws JsonGenerationException,
+	@Test
+	public void testSave() throws Exception {
+		Person person = createPerson();
+		String string = JSONify(person);
+		mockmvc.perform(
+				post("/person/save").contentType(MediaType.APPLICATION_JSON)
+						.content(string))
+				.andExpect(jsonPath("$.error").exists()).andDo(print());
+	}
+
+	private Person createPerson() throws JsonGenerationException,
 			JsonMappingException, IOException {
-		ObjectMapper mapper = new ObjectMapper();
+
 		Person person = new Person();
 		person.setFirstName("435436456");
 		person.setEmail("xyz@yahoo.com");
-		// person.setLastName("Puthalapattu");
+		person.setLastName("Puthalapattu");
 		person.setPassword("iiiii");
 		person.setPrimaryPhone("1234556789");
 		person.setPresentAddress(new Address());
+
+		return person;
+	}
+
+	private String JSONify(Object obj) throws JsonGenerationException,
+			JsonMappingException, IOException {
+		ObjectMapper mapper = new ObjectMapper();
 		ObjectWriter objectWriter = mapper.writer().withDefaultPrettyPrinter();
-		return objectWriter.writeValueAsString(person);
+		return objectWriter.writeValueAsString(obj);
 	}
 }
