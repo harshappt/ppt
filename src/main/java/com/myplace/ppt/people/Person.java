@@ -2,6 +2,7 @@ package com.myplace.ppt.people;
 
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.data.mongodb.core.index.CompoundIndex;
@@ -16,21 +17,22 @@ public class Person {
 
 	private String id;
 
-	@NotEmpty
+	@NotEmpty(message = "{not.empty}")
 	private String password;
 
-	@NotEmpty
+	@NotEmpty(message = "{not.empty}")
 	private String firstName;
 
-	@NotEmpty
+	@NotEmpty(message = "{not.empty}")
 	private String lastName;
 
 	private String middleName;
 
-	@NotEmpty
+	@NotEmpty(message = "{not.empty}")
+	@Email
 	private String email;
 
-	@NotEmpty
+	@NotEmpty(message = "{not.empty}")
 	private String primaryPhone;
 
 	private String secondaryPhone;
