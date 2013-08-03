@@ -10,3 +10,10 @@ Steps to run the app:
 
 	sh target/bin/ppt
 
+
+
+1. Added Spring mvc test
+2. Added Person Controller
+3. Added JSR 303 and hibernate validation frameworks
+
+

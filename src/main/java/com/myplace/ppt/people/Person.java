@@ -1,46 +1,51 @@
 package com.myplace.ppt.people;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.beans.factory.annotation.Required;
-import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.CompoundIndex;
+import org.springframework.data.mongodb.core.index.CompoundIndexes;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "people")
+@CompoundIndexes(
+
+@CompoundIndex(name = "email_unique_index", def = "{'email' : 1}", unique = true))
 public class Person {
 
-	@Id
 	private String id;
 
+	@NotEmpty
 	private String password;
 
+	@NotEmpty
 	private String firstName;
 
+	@NotEmpty
 	private String lastName;
 
 	private String middleName;
 
+	@NotEmpty
 	private String email;
 
+	@NotEmpty
 	private String primaryPhone;
 
 	private String secondaryPhone;
 
+	@NotNull
 	private Address presentAddress;
 
 	private Address permanentAddress;
 
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
+	private String profession;
 
 	public String getFirstName() {
 		return firstName;
 	}
 
-	@Required
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
@@ -109,5 +114,13 @@ public class Person {
 	@Required
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getProfession() {
+		return profession;
+	}
+
+	public void setProfession(String profession) {
+		this.profession = profession;
 	}
 }

@@ -5,3 +5,4 @@ target/
 *.settings
 *.git
 *.tomcat.8080
+*.db
