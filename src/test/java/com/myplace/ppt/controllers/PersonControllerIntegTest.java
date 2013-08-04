@@ -55,7 +55,7 @@ public class PersonControllerIntegTest {
 
 		String string = JSONify(person);
 		mockmvc.perform(
-				post("/person/save").contentType(MediaType.APPLICATION_JSON)
+				post("/people/person").contentType(MediaType.APPLICATION_JSON)
 						.content(string))
 				.andExpect(jsonPath("$.lastName").exists())
 				.andExpect(jsonPath("$.firstName").exists())
@@ -69,7 +69,7 @@ public class PersonControllerIntegTest {
 		Person person = createPerson();
 		String string = JSONify(person);
 		mockmvc.perform(
-				post("/person/save").contentType(MediaType.APPLICATION_JSON)
+				post("/people/person").contentType(MediaType.APPLICATION_JSON)
 						.content(string))
 				.andExpect(jsonPath("$.error").exists()).andDo(print());
 	}

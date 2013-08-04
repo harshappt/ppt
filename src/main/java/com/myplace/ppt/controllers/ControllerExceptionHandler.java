@@ -51,8 +51,7 @@ public class ControllerExceptionHandler implements MessageSourceAware {
 	@ResponseStatus(value = HttpStatus.CONFLICT)
 	public Map<String, String> handleDuplicateKey(DuplicateKeyException ex) {
 		Map<String, String> map = new HashMap<String, String>();
-		map.put("error", messageSource.getMessage("email.already.registered",
-				null, LocaleContextHolder.getLocale()));
+		map.put("error", ex.getLocalizedMessage());
 		return map;
 	}
 
